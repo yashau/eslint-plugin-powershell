@@ -48,9 +48,9 @@ Supported rules should have tests ported from the upstream `PowerShell/PSScriptA
 - `PSUseSupportsShouldProcess`
 - `PSUseToExportFieldsInManifest`
 
-## Covered By Prettier
+## Covered Externally
 
-These are formatting-style checks delegated to Prettier with `prettier-plugin-powershell` instead of duplicated inside ESLint rules.
+These are formatting-style checks covered by external PowerShell formatters instead of duplicated inside ESLint rules.
 
 - `PSAvoidLongLines`
 - `PSAvoidSemicolonsAsLineTerminators`

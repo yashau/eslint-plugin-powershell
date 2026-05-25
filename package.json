@@ -15,8 +15,6 @@
     "powershell-eslint": "./bin/powershell-eslint.js"
   },
   "files": [
-    ".prettierrc.json",
-    ".prettierignore",
     "bin",
     "docs",
     "src",
@@ -33,9 +31,9 @@
   "scripts": {
     "check": "pnpm lint && pnpm format:check && pnpm test && pnpm run lint:fixtures && pnpm pack --dry-run --json",
     "check:ci": "pnpm run lint:ci && pnpm run format:check:ci && pnpm test && pnpm run lint:fixtures && pnpm pack --dry-run --json",
-    "format": "oxfmt \"**/*.{js,json,md,yml,yaml}\" && prettier --write \"**/*.{ps1,psm1,psd1}\"",
-    "format:check": "oxfmt --check \"**/*.{js,json,md,yml,yaml}\" && prettier --check \"**/*.{ps1,psm1,psd1}\"",
-    "format:check:ci": "oxfmt --check \"**/*.{js,json,md,yml,yaml}\" --threads=1 && prettier --check \"**/*.{ps1,psm1,psd1}\"",
+    "format": "oxfmt \"**/*.{js,json,md,yml,yaml}\"",
+    "format:check": "oxfmt --check \"**/*.{js,json,md,yml,yaml}\"",
+    "format:check:ci": "oxfmt --check \"**/*.{js,json,md,yml,yaml}\" --threads=1",
     "lint": "oxlint . --deny-warnings",
     "lint:ci": "oxlint . --deny-warnings --threads=1",
     "lint:fixtures": "node ./bin/powershell-eslint.js test/fixtures/clean.ps1 --format stylish",
@@ -44,9 +42,7 @@
   "devDependencies": {
     "eslint": "^9.39.1",
     "oxfmt": "^0.51.0",
-    "oxlint": "^1.66.0",
-    "prettier": "^3.8.3",
-    "prettier-plugin-powershell": "^2.1.4"
+    "oxlint": "^1.66.0"
   },
   "peerDependencies": {
     "eslint": ">=8.57 || >=9"
