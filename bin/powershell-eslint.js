@@ -67,7 +67,9 @@ function printStylish(lintResults) {
     console.log(pathToFileURL(result.filePath).href);
     for (const message of result.messages) {
       const label = message.severity === 2 ? "error" : "warn";
-      console.log(`  ${message.line}:${message.column}  ${label}  ${message.message}  ${message.ruleId}`);
+      console.log(
+        `  ${message.line}:${message.column}  ${label}  ${message.message}  ${message.ruleId}`,
+      );
     }
     console.log("");
   }

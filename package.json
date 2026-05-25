@@ -2,14 +2,15 @@
   "name": "eslint-plugin-powershell",
   "version": "0.1.0",
   "description": "Native-PowerShell-free ESLint plugin, parser, and CLI for linting PowerShell scripts.",
-  "type": "module",
-  "packageManager": "pnpm@11.3.0",
-  "main": "./src/index.js",
-  "exports": {
-    ".": "./src/index.js",
-    "./parser": "./src/parser.js",
-    "./linter": "./src/linter.js"
-  },
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "oxlint",
+    "powershell",
+    "psscriptanalyzer",
+    "tree-sitter"
+  ],
+  "license": "MIT",
   "bin": {
     "powershell-eslint": "./bin/powershell-eslint.js"
   },
@@ -21,22 +22,30 @@
     "README.md",
     "LICENSE"
   ],
-  "scripts": {
-    "format": "prettier --write \"**/*.{js,json,md,ps1,psm1,psd1}\"",
-    "format:check": "prettier --check \"**/*.{js,json,md,ps1,psm1,psd1}\"",
-    "test": "node --test",
-    "lint:fixtures": "node ./bin/powershell-eslint.js test/fixtures/clean.ps1 --format stylish"
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./parser": "./src/parser.js",
+    "./linter": "./src/linter.js"
   },
-  "keywords": [
-    "eslint",
-    "eslint-plugin",
-    "powershell",
-    "psscriptanalyzer",
-    "oxlint",
-    "tree-sitter"
-  ],
-  "engines": {
-    "node": ">=18.18"
+  "scripts": {
+    "check": "pnpm lint && pnpm format:check && pnpm test && pnpm run lint:fixtures && pnpm pack --dry-run --json",
+    "check:ci": "pnpm run lint:ci && pnpm run format:check:ci && pnpm test && pnpm run lint:fixtures && pnpm pack --dry-run --json",
+    "format": "oxfmt \"**/*.{js,json,md,yml,yaml}\" && prettier --write \"**/*.{ps1,psm1,psd1}\"",
+    "format:check": "oxfmt --check \"**/*.{js,json,md,yml,yaml}\" && prettier --check \"**/*.{ps1,psm1,psd1}\"",
+    "format:check:ci": "oxfmt --check \"**/*.{js,json,md,yml,yaml}\" --threads=1 && prettier --check \"**/*.{ps1,psm1,psd1}\"",
+    "lint": "oxlint . --deny-warnings",
+    "lint:ci": "oxlint . --deny-warnings --threads=1",
+    "lint:fixtures": "node ./bin/powershell-eslint.js test/fixtures/clean.ps1 --format stylish",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "oxfmt": "^0.51.0",
+    "oxlint": "^1.66.0",
+    "prettier": "^3.8.3",
+    "prettier-plugin-powershell": "^2.1.4"
   },
   "peerDependencies": {
     "eslint": ">=8.57 || >=9"
@@ -46,10 +55,8 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "eslint": "^9.39.1",
-    "prettier": "^3.8.3",
-    "prettier-plugin-powershell": "^2.1.4"
+  "engines": {
+    "node": ">=18.18"
   },
-  "license": "MIT"
+  "packageManager": "pnpm@11.3.0"
 }

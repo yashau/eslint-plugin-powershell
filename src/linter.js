@@ -1,13 +1,14 @@
 import { parsePowerShell } from "./parse.js";
 import plugin from "./index.js";
 
-const DEFAULT_RULES = {
-  ...Object.fromEntries(
-    Object.entries(plugin.rules)
-      .filter(([ruleId, rule]) => /^PS/u.test(ruleId) && rule.meta.docs.recommended)
-      .map(([ruleId, rule]) => [`powershell/${ruleId}`, rule.meta.defaultSeverity === "error" ? 2 : 1]),
-  ),
-};
+const DEFAULT_RULES = Object.fromEntries(
+  Object.entries(plugin.rules)
+    .filter(([ruleId, rule]) => ruleId.startsWith("PS") && rule.meta.docs.recommended)
+    .map(([ruleId, rule]) => [
+      `powershell/${ruleId}`,
+      rule.meta.defaultSeverity === "error" ? 2 : 1,
+    ]),
+);
 
 export function lintText(sourceText, options = {}) {
   const ast = parsePowerShell(sourceText, {
@@ -36,7 +37,11 @@ export function lintText(sourceText, options = {}) {
   return {
     filePath: options.filePath ?? "<input>",
     messages: messages.sort((left, right) => {
-      return left.line - right.line || left.column - right.column || left.ruleId.localeCompare(right.ruleId);
+      return (
+        left.line - right.line ||
+        left.column - right.column ||
+        left.ruleId.localeCompare(right.ruleId)
+      );
     }),
     errorCount: messages.filter((message) => message.severity === 2).length,
     warningCount: messages.filter((message) => message.severity === 1).length,

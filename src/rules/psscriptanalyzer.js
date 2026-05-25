@@ -177,7 +177,10 @@ const implementedRules = {
     description: "flags assignments to PowerShell automatic variables",
     check(context, ast) {
       for (const token of ast.tokens) {
-        if (token.type !== "PowerShellVariable" || !automaticVariables.has(token.value.toLowerCase())) {
+        if (
+          token.type !== "PowerShellVariable" ||
+          !automaticVariables.has(token.value.toLowerCase())
+        ) {
           continue;
         }
         const next = nextToken(ast.tokens, token);
@@ -202,7 +205,11 @@ const implementedRules = {
     severity: "warn",
     description: "flags switch parameters with default values",
     check(context) {
-      scan(context, /\[switch\]\s*\$(\w+)\s*=/giu, "Switch parameter '$1' should not define a default value.");
+      scan(
+        context,
+        /\[switch\]\s*\$(\w+)\s*=/giu,
+        "Switch parameter '$1' should not define a default value.",
+      );
       scan(
         context,
         /\[System\.Management\.Automation\.SwitchParameter\]\s*\$(\w+)\s*=/giu,
@@ -236,7 +243,11 @@ const implementedRules = {
     severity: "warn",
     description: "flags global function definitions",
     check(context) {
-      scan(context, /\bfunction\s+(?:global:|function:global:)[\w-]+/giu, "Avoid declaring global functions.");
+      scan(
+        context,
+        /\bfunction\s+(?:global:|function:global:)[\w-]+/giu,
+        "Avoid declaring global functions.",
+      );
     },
   },
   PSAvoidGlobalVars: {
@@ -251,14 +262,22 @@ const implementedRules = {
     description: "flags empty member invocation",
     check(context) {
       scan(context, /\.\s*\(\s*\)/gu, "Avoid invoking an empty member expression.");
-      scan(context, /\.\s*\([^)]*[+][^)]*\)/gu, "Avoid invoking dynamically composed member names.");
+      scan(
+        context,
+        /\.\s*\([^)]*[+][^)]*\)/gu,
+        "Avoid invoking dynamically composed member names.",
+      );
     },
   },
   PSAvoidNullOrEmptyHelpMessageAttribute: {
     severity: "warn",
     description: "flags empty HelpMessage attributes",
     check(context) {
-      scan(context, /\bHelpMessage\s*=\s*(["'])\s*\1/giu, "HelpMessage should not be null or empty.");
+      scan(
+        context,
+        /\bHelpMessage\s*=\s*(["'])\s*\1/giu,
+        "HelpMessage should not be null or empty.",
+      );
     },
   },
   PSAvoidOverwritingBuiltInCmdlets: {
@@ -278,7 +297,11 @@ const implementedRules = {
     check(context, ast) {
       for (const fn of ast.body[0].functions) {
         if (!fn.name.includes("-")) {
-          report(context, fn, `Function '${fn.name}' should not use a reserved or non cmdlet-style name.`);
+          report(
+            context,
+            fn,
+            `Function '${fn.name}' should not use a reserved or non cmdlet-style name.`,
+          );
         }
       }
     },
@@ -287,7 +310,11 @@ const implementedRules = {
     severity: "warn",
     description: "flags AllowUnencryptedAuthentication usage",
     check(context) {
-      scan(context, /-AllowUnencryptedAuthentication(?:\s+\$true)?\b/giu, "Avoid AllowUnencryptedAuthentication.");
+      scan(
+        context,
+        /-AllowUnencryptedAuthentication(?:\s+\$true)?\b/giu,
+        "Avoid AllowUnencryptedAuthentication.",
+      );
     },
   },
   PSAvoidUsingBrokenHashAlgorithms: {
@@ -439,7 +466,11 @@ const implementedRules = {
     severity: "warn",
     description: "flags null comparisons where null is on the right",
     check(context) {
-      scan(context, /\$[\w:]+\s+-c?(?:eq|ne)\s+\$null\b/giu, "Put $null on the left side of equality comparisons.");
+      scan(
+        context,
+        /\$[\w:]+\s+-c?(?:eq|ne)\s+\$null\b/giu,
+        "Put $null on the left side of equality comparisons.",
+      );
     },
   },
   PSPossibleIncorrectUsageOfAssignmentOperator: {
@@ -534,8 +565,15 @@ const implementedRules = {
     description: "flags pipeline parameters without process block",
     check(context) {
       for (const fn of findFunctionBlocks(context.sourceCode.text)) {
-        if (/ValueFromPipeline\s*=\s*\$true/iu.test(fn.header) && !/\bprocess\s*\{/iu.test(fn.body)) {
-          reportIndex(context, fn.index, "Function with ValueFromPipeline should define a process block.");
+        if (
+          /ValueFromPipeline\s*=\s*\$true/iu.test(fn.header) &&
+          !/\bprocess\s*\{/iu.test(fn.body)
+        ) {
+          reportIndex(
+            context,
+            fn.index,
+            "Function with ValueFromPipeline should define a process block.",
+          );
         }
       }
     },
@@ -557,7 +595,10 @@ const implementedRules = {
     check(context) {
       for (const fn of findFunctionBlocks(context.sourceCode.text)) {
         const [verb] = fn.name.split("-");
-        if (stateChangingVerbs.has(verb) && !/SupportsShouldProcess\s*=\s*\$true/iu.test(fn.header + fn.body)) {
+        if (
+          stateChangingVerbs.has(verb) &&
+          !/SupportsShouldProcess\s*=\s*\$true/iu.test(fn.header + fn.body)
+        ) {
           reportIndex(context, fn.index, `Function '${fn.name}' should support ShouldProcess.`);
         }
       }

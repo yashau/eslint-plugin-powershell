@@ -16,7 +16,8 @@ export default {
 
         context.report({
           node,
-          message: "Catch block is empty; handle the error or document why it is intentionally ignored.",
+          message:
+            "Catch block is empty; handle the error or document why it is intentionally ignored.",
         });
       },
     };

@@ -31,11 +31,12 @@ plugin.configs.recommended = [
     plugins: {
       powershell: plugin,
     },
-    rules: {
-      ...Object.fromEntries(
-        Object.entries(defaultRuleLevels).map(([ruleName, level]) => [`powershell/${ruleName}`, level]),
-      ),
-    },
+    rules: Object.fromEntries(
+      Object.entries(defaultRuleLevels).map(([ruleName, level]) => [
+        `powershell/${ruleName}`,
+        level,
+      ]),
+    ),
   },
 ];
 

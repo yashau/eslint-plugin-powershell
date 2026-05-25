@@ -40,14 +40,5 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
-      - name: Test
-        run: pnpm test
-
-      - name: Lint fixtures
-        run: pnpm run lint:fixtures
-
-      - name: Check formatting
-        run: pnpm format:check
-
-      - name: Pack dry run
-        run: pnpm pack --dry-run --json
+      - name: Check
+        run: pnpm check:ci
