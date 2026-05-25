@@ -78,8 +78,6 @@ oxlint .
 pnpm exec powershell-eslint "**/*.{ps1,psm1,psd1}"
 ```
 
-Biome can also run beside this package for the web languages it supports, but it does not currently parse, format, or lint PowerShell files. Biome's plugin support is not a replacement path for these rules because its GritQL plugins currently target JavaScript and CSS only.
-
 The rule metadata and standalone linter are intentionally runner-neutral so other tools can call `lintText` from `eslint-plugin-powershell/linter`.
 
 ## Native-free parser strategy
