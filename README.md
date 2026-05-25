@@ -36,6 +36,8 @@ Or configure it manually:
 import powershell from "eslint-plugin-powershell";
 import parser from "eslint-plugin-powershell/parser";
 
+const recommendedRules = powershell.configs.recommended[0].rules;
+
 export default [
   {
     files: ["**/*.{ps1,psm1,psd1}"],
@@ -45,12 +47,7 @@ export default [
     plugins: {
       powershell,
     },
-    rules: {
-      "powershell/no-alias": "warn",
-      "powershell/no-write-host": "warn",
-      "powershell/use-approved-verb": "warn",
-      "powershell/no-empty-catch": "error",
-    },
+    rules: recommendedRules,
   },
 ];
 ```
