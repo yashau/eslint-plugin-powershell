@@ -1,5 +1,10 @@
 # eslint-plugin-powershell
 
+[![CI](https://github.com/yashau/eslint-plugin-powershell/actions/workflows/ci.yml/badge.svg)](https://github.com/yashau/eslint-plugin-powershell/actions/workflows/ci.yml)
+![Tests](https://img.shields.io/badge/tests-13%20passing-brightgreen)
+![pnpm](https://img.shields.io/badge/pnpm-11.3.0-F69220?logo=pnpm&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-%3E%3D8.57%20%7C%7C%20%3E%3D9-4B32C3?logo=eslint&logoColor=white)
+
 Native-PowerShell-free linting for PowerShell scripts.
 
 This package provides:
