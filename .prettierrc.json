@@ -1,0 +1,9 @@
+{
+  "plugins": ["prettier-plugin-powershell"],
+  "printWidth": 120,
+  "powershellPreset": "invoke-formatter",
+  "powershellLineWidth": 120,
+  "powershellPreferSingleQuote": true,
+  "powershellRewriteAliases": false,
+  "powershellRewriteWriteHost": false
+}

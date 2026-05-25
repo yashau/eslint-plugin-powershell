@@ -1,0 +1,8 @@
+node_modules/
+*.log
+*.tgz
+coverage/
+dist/
+.eslintcache
+.DS_Store
+Thumbs.db

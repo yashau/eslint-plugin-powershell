@@ -1,0 +1,55 @@
+{
+  "name": "eslint-plugin-powershell",
+  "version": "0.1.0",
+  "description": "Native-PowerShell-free ESLint plugin, parser, and CLI for linting PowerShell scripts.",
+  "type": "module",
+  "packageManager": "pnpm@11.3.0",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./parser": "./src/parser.js",
+    "./linter": "./src/linter.js"
+  },
+  "bin": {
+    "powershell-eslint": "./bin/powershell-eslint.js"
+  },
+  "files": [
+    ".prettierrc.json",
+    "bin",
+    "docs",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,json,md,ps1,psm1,psd1}\"",
+    "format:check": "prettier --check \"**/*.{js,json,md,ps1,psm1,psd1}\"",
+    "test": "node --test",
+    "lint:fixtures": "node ./bin/powershell-eslint.js test/fixtures/clean.ps1 --format stylish"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "powershell",
+    "psscriptanalyzer",
+    "oxlint",
+    "tree-sitter"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.57 || >=9"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "prettier": "^3.8.3",
+    "prettier-plugin-powershell": "^2.1.4"
+  },
+  "license": "MIT"
+}
