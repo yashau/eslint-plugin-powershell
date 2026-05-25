@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-powershell",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Native-PowerShell-free ESLint plugin, parser, and CLI for linting PowerShell scripts.",
   "keywords": [
     "eslint",
