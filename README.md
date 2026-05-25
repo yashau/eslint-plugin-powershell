@@ -83,25 +83,9 @@ PowerShell's canonical AST is produced by `System.Management.Automation.Language
 
 The parser and rules are intentionally separated so a future async tree-sitter WASM backend can feed the same rule layer for tools that can await parsing. ESLint itself still needs the synchronous parser exported from `eslint-plugin-powershell/parser`.
 
-## Rules
+## Rule Coverage
 
 The PSScriptAnalyzer-compatible rule names are the primary supported surface. See [docs/rule-coverage.md](docs/rule-coverage.md) for implemented native-free checks, formatter-delegated rules, and unsupported rules that require PowerShell AST/runtime metadata, byte-level input, or module layout analysis.
-
-### `powershell/no-alias`
-
-Reports common aliases such as `%`, `?`, `ls`, `cat`, `curl`, and `wget`.
-
-### `powershell/no-write-host`
-
-Reports `Write-Host` calls.
-
-### `powershell/use-approved-verb`
-
-Reports function names that do not use an approved PowerShell verb.
-
-### `powershell/no-empty-catch`
-
-Reports catch blocks with no executable content.
 
 ## References
 
