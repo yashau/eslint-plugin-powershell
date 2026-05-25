@@ -5,7 +5,7 @@
 ![pnpm](https://img.shields.io/badge/pnpm-11.3.0-F69220?style=for-the-badge&logo=pnpm&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLint-%3E%3D8.57%20%7C%7C%20%3E%3D9-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
 
-Native-PowerShell-free linting for PowerShell scripts.
+PowerShell linting for projects that are not PowerShell projects.
 
 This package provides:
 
@@ -53,6 +53,15 @@ export default [
 ```
 
 ## CLI
+
+Run without installing:
+
+```sh
+npx -y eslint-plugin-powershell@latest "**/*.{ps1,psm1,psd1}"
+pnpm dlx eslint-plugin-powershell@latest "**/*.{ps1,psm1,psd1}"
+```
+
+Run from a project install:
 
 ```sh
 pnpm exec powershell-eslint "scripts/**/*.ps1"
