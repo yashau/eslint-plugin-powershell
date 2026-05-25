@@ -62,17 +62,6 @@ JSON output:
 pnpm exec powershell-eslint "scripts/**/*.ps1" --format json
 ```
 
-## Formatting
-
-Formatting-style PSScriptAnalyzer rules are delegated to Prettier through `prettier-plugin-powershell`.
-
-```sh
-pnpm format:check
-pnpm format
-```
-
-The checked-in Prettier config uses the plugin's `invoke-formatter` preset plus single quotes for constant strings.
-
 ## Oxlint and other runners
 
 Oxlint supports many ESLint-compatible JavaScript plugins, but its current documentation says custom file formats and parsers are not supported yet. That means this package cannot make oxlint parse PowerShell files directly today.
