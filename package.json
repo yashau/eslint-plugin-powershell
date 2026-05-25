@@ -16,6 +16,7 @@
   },
   "files": [
     ".prettierrc.json",
+    ".prettierignore",
     "bin",
     "docs",
     "src",
